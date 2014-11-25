@@ -10,13 +10,16 @@
 
 @interface SplitImage : NSObject
 {
-    UIImage *image;
-    Point current_point;
-    Point original_point;
-    int index;
+    
 }
 
--(void) initWithImage : (UIImage *) image current_point: (Point) cp original_point:(Point) op index:(int) i ;
+@property UIImageView *imageView;
+@property UIImage *image;
+@property CGPoint current_point;
+@property CGPoint original_point;
+@property int index;
 
--(BOOL) imageCloseToOriginal :(Point) p index:(int) i;
+-(id) initWithImage : (UIImage *) image current_point: (CGPoint) cp original_point:(CGPoint) op index:(int) i ;
+
+-(BOOL) imageCloseToOriginal :(CGPoint) p index:(int) i;
 @end

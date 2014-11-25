@@ -22,25 +22,17 @@
     ADBannerView *adview;
     
     IBOutlet CustomView *theView;
+
     
-    IBOutlet UIImageView *testView1;
-    IBOutlet UIImageView *testView2;
-    IBOutlet UIImageView *testView3;
-    IBOutlet UIImageView *testView4;
-    IBOutlet UIImageView *testView5;
-    IBOutlet UIImageView *testView6;
-    IBOutlet UIImageView *testView7;
-    IBOutlet UIImageView *testView8;
-    IBOutlet UIImageView *testView9;
-    
+    __weak IBOutlet UIImageView *puzzleImageView;
     IBOutlet UIImageView *imageView;
     
     IBOutlet UIButton *buttonSplit;
     
     IBOutlet UITextField *textNumberOfSplits;
-    NSMutableArray *imgViewArray;
     
     NSMutableArray *splitImageArray;
+    NSMutableArray *puzzleArray;
     
 }
 

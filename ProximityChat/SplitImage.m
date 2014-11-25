@@ -8,8 +8,8 @@
 
 #import "SplitImage.h"
 
-#define IMAGE_SNAP_THRESHOLD_X  20
-#define IMAGE_SNAP_THRESHOLD_Y  20
+#define IMAGE_SNAP_THRESHOLD_X  40
+#define IMAGE_SNAP_THRESHOLD_Y  40
 
 @implementation SplitImage
 {
@@ -17,29 +17,31 @@
     
 }
 
--(void) initWithImage : (UIImage *) img current_point: (Point) cp original_point:(Point) op index:(int) i
+-(id) initWithImage : (UIImage *) img current_point: (CGPoint) cp original_point:(CGPoint) op index:(int) i
 {
-    image = img;
-    current_point = cp;
-    original_point = op;
-    index = i;
+    self = [super init];
+    
+    _image = img;
+    _current_point = cp;
+    _original_point = op;
+    _index = i;
+    return self;
 }
 
 
--(BOOL) imageCloseToOriginal :(Point) p index:(int) i
+-(BOOL) imageCloseToOriginal :(CGPoint) p index:(int) i
 {
     BOOL close_enough = FALSE;
     
-    if( index == i )
-    {
-        short h = p.h - original_point.h;
-        short v = p.v - original_point.v;
+    
+        short h = p.x - _original_point.x;
+        short v = p.y - _original_point.y;
     
         if (abs(h) <=IMAGE_SNAP_THRESHOLD_X && abs(v) <=IMAGE_SNAP_THRESHOLD_Y)
         {
             close_enough = TRUE;
         }
-    }
+    
     return close_enough;
 }
 @end

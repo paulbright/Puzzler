@@ -8,6 +8,7 @@
 
 #import "PROCViewController.h"
 #import "PROCAppDelegate.h"; 
+#import "SplitImage.h"
 
 
 #define kGameKitSessionID @"proximity chat(1.0)"
@@ -24,32 +25,17 @@
     lbl_info.text = @"data";
     
     adview.delegate = self;
-    /*
-    session = [[GKSession alloc] initWithSessionID:kGameKitSessionID displayName:nil sessionMode:GKSessionModePeer];
-    
-    session.delegate = self;
-    
-    GKPeerPickerController * picker = [[GKPeerPickerController alloc] init];
-    
-    picker.connectionTypesMask = GKPeerPickerConnectionTypeNearby |
-                                    GKPeerPickerConnectionTypeOnline;
-    
-    [picker show];
-    
-    */
-    
-    
-    imgViewArray = [NSMutableArray arrayWithObjects:  testView1, testView2, testView3 , testView4,
-                    testView5,  testView6, testView7, testView8, testView9, nil];
     
     UIImage *originalImage = [UIImage imageNamed:@"lighthouse.jpg"];
     
     UIImage *image = [self normalizedImage:originalImage];
     
-    UIImage *img = [self resizeImage:image resizeTo:imageView.frame];
+    UIImage *img = [self resizeImage:image resizeTo:puzzleImageView.frame];
     
     imageView.image = img;
+    //[self drawRect:puzzleImageView.frame];
 }
+
 
 - (UIImage *)normalizedImage  : (UIImage *) image
 {
@@ -85,30 +71,79 @@
     CGImageRef left = CGImageCreateWithImageInRect(image.CGImage, leftImgFrame);
     CGImageRef right = CGImageCreateWithImageInRect(image.CGImage, rightImgFrame);
     
-    UIImage* leftImage = [UIImage imageWithCGImage:left];
-    UIImage* rightImage = [UIImage imageWithCGImage:right];
-    
     CGImageRelease(left);
     CGImageRelease(right);
 }
 
 - (void)tap:(UITapGestureRecognizer*)gesture
 {
-    NSLog(@"image tap=%d", gesture.view.tag);
+    SplitImage *si = (SplitImage *)[puzzleArray objectAtIndex:gesture.view.tag];
+    
+    NSLog(@"image tap=%d original_loc:%d", gesture.view.tag, si.index);
+}
+
+- (void)panPuzzlePiece:(UIPanGestureRecognizer *)recognizer
+{
+    
+    CGPoint translation = [recognizer translationInView:self.view];
+    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
+                                         recognizer.view.center.y + translation.y);
+    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+    for(SplitImage *si in puzzleArray)
+    {
+        if([si imageView] == recognizer.view)
+        {
+            si.current_point = recognizer.view.center;
+            if([si imageCloseToOriginal:recognizer.view.frame.origin index:si.index])
+            {
+                recognizer.enabled = NO;
+                recognizer.enabled = YES;
+                si.imageView.frame = CGRectMake(si.original_point.x, si.original_point.y, si.image.size.width, si.image.size.height) ;
+            }
+            break;
+        }
+    }
+    /*
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        CGPoint velocity = [recognizer velocityInView:self.view];
+        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
+        CGFloat slideMult = magnitude / 200;
+        NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
+        
+        float slideFactor = 0.1 * slideMult; // Increase for more of a slide
+        CGPoint finalPoint = CGPointMake(recognizer.view.center.x + (velocity.x * slideFactor),
+                                         recognizer.view.center.y + (velocity.y * slideFactor));
+        finalPoint.x = MIN(MAX(finalPoint.x, 0), self.view.bounds.size.width);
+        finalPoint.y = MIN(MAX(finalPoint.y, 0), self.view.bounds.size.height);
+        
+        [UIView animateWithDuration:slideFactor*2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            recognizer.view.center = finalPoint;
+        } completion:nil];
+        
+    }
+     */
 }
 
 -(NSMutableArray *)getImagesFromImage:(UIImage *)image withRow:(NSInteger)rows withColumn:(NSInteger)columns
 {
     
     NSMutableArray *images = [NSMutableArray array];
+    puzzleArray = [[NSMutableArray alloc] init];
     CGSize imageSize = image.size;
     CGFloat xPos = 0.0, yPos = 0.0;
     CGFloat width = imageSize.width/columns;
     CGFloat height = imageSize.height/rows;
     int array_index = 0;
-
+    CGFloat destX = 0.0, destY = 0.0;
+    
+    destX = puzzleImageView.frame.origin.x;
+    destY = puzzleImageView.frame.origin.y;
+    
     for (int y = 0; y < rows; y++) {
         xPos = 0.0;
+        destX = puzzleImageView.frame.origin.x;
         for (int x = 0; x < columns; x++) {
             
             CGRect rect = CGRectMake(xPos , yPos , width , height );
@@ -119,11 +154,15 @@
             
             UIImage *dImage = [UIImage imageWithCGImage:cImage scale:image.scale orientation:image.imageOrientation];
             [images addObject:dImage];
+            SplitImage *si = [[SplitImage alloc] initWithImage:dImage current_point:CGPointMake(destX, destY) original_point:CGPointMake(destX, destY) index:array_index];
+            [puzzleArray addObject:si];
             
             xPos += width;
+            destX += width;
             ++array_index;
         }
-        yPos += height;
+        yPos  += height;
+        destY +=height;
     }
     return images;
 
@@ -139,6 +178,17 @@
     [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:filename] atomically:TRUE];
 }
 
+- (void)shuffle
+{
+    NSUInteger count = [puzzleArray count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger exchangeIndex = arc4random_uniform(count);
+        if (i != exchangeIndex) {
+            [puzzleArray exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        }
+    }
+}
+
 -(void) displaySplitImages : (BOOL) scrambled
 {
     
@@ -146,24 +196,24 @@
     int vgap = 10;
     int hgap = 10;
     int array_index = 0;
-    NSMutableArray *images = splitImageArray;
-    int num_splits = [splitImageArray count] ;
+    int num_splits = [puzzleArray count] ;
     
     num_splits = sqrt(num_splits);
     
     startPoint = imageView.frame.origin;
     startPoint.y = startPoint.y + imageView.frame.size.height + 20;
     
+    if(scrambled) [self shuffle];
+    
     for (int r=0; r < num_splits; r++)
     {
         for (int c=0; c < num_splits; c++)
         {
-            UIImage *img = ((UIImage *)[images objectAtIndex: array_index]);
+            SplitImage *si = [puzzleArray objectAtIndex:array_index];
+            UIImage *img = si.image;
             
             int y = startPoint.y +  (img.size.height * r) + r * vgap;
             int x = startPoint.x +  (img.size.width * c ) + c * hgap;
-            
-            //CGRect rect = CGRectMake(x *.5, y *.5, img.size.width *.5, img.size.height * .5);
             
             CGRect rect = CGRectMake(x , y , img.size.width , img.size.height);
             
@@ -171,13 +221,22 @@
             imgV.userInteractionEnabled = TRUE;
             [imgV setBounds:rect];
             [imgV setImage:img];
+            si.imageView = imgV;
             [self.view addSubview:imgV];
             
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                   action:@selector(tap:)];
+            
+            
+            UIPanGestureRecognizer* panPuzzlePieceGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(panPuzzlePiece:)];
+            
+            panPuzzlePieceGesture.delegate = self;
+            
             tap.delegate = self;
             tap.numberOfTapsRequired = 1;
             [imgV addGestureRecognizer:tap];
+            [imgV addGestureRecognizer:panPuzzlePieceGesture];
             imgV.tag  = array_index;
             ++array_index;
         }
@@ -188,8 +247,6 @@
 -(IBAction) clickSplitButton : (id) sender
 {
     int num_splits = [textNumberOfSplits text].intValue;
-    
-    //imageView.frame.origin.y + imageView.frame.size.height + vgap;
     splitImageArray = [self getImagesFromImage:imageView.image withRow:num_splits withColumn:num_splits];
     [self displaySplitImages:TRUE];
 }
@@ -200,7 +257,6 @@
     adview.delegate = self;
     [adview setFrame:CGRectMake(10, 20, 300, 50)];
     [self.view addSubview:adview];
-    
 }
 
 -(PROCAppDelegate *) appDelegate

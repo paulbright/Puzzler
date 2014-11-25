@@ -241,6 +241,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Paul Bright";
 				TargetAttributes = {
+					BFC82F9119B9EFFA00F4436F = {
+						DevelopmentTeam = 2UDNTWK8FA;
+					};
 					BFC82FB519B9EFFB00F4436F = {
 						TestTargetID = BFC82F9119B9EFFA00F4436F;
 					};
