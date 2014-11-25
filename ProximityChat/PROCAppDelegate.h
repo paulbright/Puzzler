@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface PROCAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PROCAppDelegate : UIResponder <UIApplicationDelegate, ADBannerViewDelegate>
+{
+    ADBannerView *adview;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic)  ADBannerView *adview;
 
 @end

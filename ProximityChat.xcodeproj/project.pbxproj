@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF319C7F19C9AE95004B04FC /* zebra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF319C7E19C9AE95004B04FC /* zebra.jpg */; };
+		BF40580D19C8509C00986769 /* pass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF40580C19C8509C00986769 /* pass.jpg */; };
+		BF40581019C8560700986769 /* SplitImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40580F19C8560700986769 /* SplitImage.m */; };
+		BFBD07D219CAC2E0006A5247 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD07D119CAC2E0006A5247 /* CustomView.m */; };
+		BFBD07D419D06A43006A5247 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBD07D319D06A43006A5247 /* team.png */; };
+		BFBD07D619D15C3B006A5247 /* lighthouse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BFBD07D519D15C3B006A5247 /* lighthouse.jpg */; };
 		BFC82F9619B9EFFB00F4436F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82F9519B9EFFB00F4436F /* Foundation.framework */; };
 		BFC82F9819B9EFFB00F4436F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82F9719B9EFFB00F4436F /* CoreGraphics.framework */; };
 		BFC82F9A19B9EFFB00F4436F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82F9919B9EFFB00F4436F /* UIKit.framework */; };
@@ -22,6 +28,8 @@
 		BFC82FBA19B9EFFB00F4436F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82F9919B9EFFB00F4436F /* UIKit.framework */; };
 		BFC82FC219B9EFFB00F4436F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFC82FC019B9EFFB00F4436F /* InfoPlist.strings */; };
 		BFC82FC419B9EFFB00F4436F /* ProximityChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC82FC319B9EFFB00F4436F /* ProximityChatTests.m */; };
+		BFC82FCE19BD9CAF00F4436F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82FCD19BD9CAF00F4436F /* GameKit.framework */; };
+		BFC82FD019C0287700F4436F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC82FCF19C0287700F4436F /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF319C7E19C9AE95004B04FC /* zebra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zebra.jpg; sourceTree = "<group>"; };
+		BF40580C19C8509C00986769 /* pass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pass.jpg; sourceTree = "<group>"; };
+		BF40580E19C8560700986769 /* SplitImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitImage.h; sourceTree = "<group>"; };
+		BF40580F19C8560700986769 /* SplitImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitImage.m; sourceTree = "<group>"; };
+		BFBD07D019CAC2E0006A5247 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		BFBD07D119CAC2E0006A5247 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		BFBD07D319D06A43006A5247 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = team.png; sourceTree = "<group>"; };
+		BFBD07D519D15C3B006A5247 /* lighthouse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lighthouse.jpg; sourceTree = "<group>"; };
 		BFC82F9219B9EFFA00F4436F /* ProximityChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProximityChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC82F9519B9EFFB00F4436F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BFC82F9719B9EFFB00F4436F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +71,8 @@
 		BFC82FBF19B9EFFB00F4436F /* ProximityChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProximityChatTests-Info.plist"; sourceTree = "<group>"; };
 		BFC82FC119B9EFFB00F4436F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BFC82FC319B9EFFB00F4436F /* ProximityChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityChatTests.m; sourceTree = "<group>"; };
+		BFC82FCD19BD9CAF00F4436F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		BFC82FCF19C0287700F4436F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC82FD019C0287700F4436F /* iAd.framework in Frameworks */,
+				BFC82FCE19BD9CAF00F4436F /* GameKit.framework in Frameworks */,
 				BFC82F9819B9EFFB00F4436F /* CoreGraphics.framework in Frameworks */,
 				BFC82F9A19B9EFFB00F4436F /* UIKit.framework in Frameworks */,
 				BFC82F9619B9EFFB00F4436F /* Foundation.framework in Frameworks */,
@@ -81,6 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF40580B19C8503500986769 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD07D519D15C3B006A5247 /* lighthouse.jpg */,
+				BF319C7E19C9AE95004B04FC /* zebra.jpg */,
+				BFBD07D319D06A43006A5247 /* team.png */,
+				BF40580C19C8509C00986769 /* pass.jpg */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
 		BFC82F8919B9EFFA00F4436F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +134,8 @@
 		BFC82F9419B9EFFA00F4436F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BFC82FCF19C0287700F4436F /* iAd.framework */,
+				BFC82FCD19BD9CAF00F4436F /* GameKit.framework */,
 				BFC82F9519B9EFFB00F4436F /* Foundation.framework */,
 				BFC82F9719B9EFFB00F4436F /* CoreGraphics.framework */,
 				BFC82F9919B9EFFB00F4436F /* UIKit.framework */,
@@ -114,14 +147,19 @@
 		BFC82F9B19B9EFFB00F4436F /* ProximityChat */ = {
 			isa = PBXGroup;
 			children = (
+				BF40580B19C8503500986769 /* resources */,
 				BFC82FA419B9EFFB00F4436F /* PROCAppDelegate.h */,
 				BFC82FA519B9EFFB00F4436F /* PROCAppDelegate.m */,
 				BFC82FA719B9EFFB00F4436F /* Main_iPhone.storyboard */,
 				BFC82FAA19B9EFFB00F4436F /* Main_iPad.storyboard */,
 				BFC82FAD19B9EFFB00F4436F /* PROCViewController.h */,
+				BFBD07D019CAC2E0006A5247 /* CustomView.h */,
+				BFBD07D119CAC2E0006A5247 /* CustomView.m */,
 				BFC82FAE19B9EFFB00F4436F /* PROCViewController.m */,
 				BFC82FB019B9EFFB00F4436F /* Images.xcassets */,
 				BFC82F9C19B9EFFB00F4436F /* Supporting Files */,
+				BF40580E19C8560700986769 /* SplitImage.h */,
+				BF40580F19C8560700986769 /* SplitImage.m */,
 			);
 			path = ProximityChat;
 			sourceTree = "<group>";
@@ -233,9 +271,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC82FAC19B9EFFB00F4436F /* Main_iPad.storyboard in Resources */,
+				BFBD07D619D15C3B006A5247 /* lighthouse.jpg in Resources */,
+				BF40580D19C8509C00986769 /* pass.jpg in Resources */,
 				BFC82FB119B9EFFB00F4436F /* Images.xcassets in Resources */,
 				BFC82FA919B9EFFB00F4436F /* Main_iPhone.storyboard in Resources */,
+				BF319C7F19C9AE95004B04FC /* zebra.jpg in Resources */,
 				BFC82FA019B9EFFB00F4436F /* InfoPlist.strings in Resources */,
+				BFBD07D419D06A43006A5247 /* team.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,8 +296,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFBD07D219CAC2E0006A5247 /* CustomView.m in Sources */,
 				BFC82FA619B9EFFB00F4436F /* PROCAppDelegate.m in Sources */,
 				BFC82FAF19B9EFFB00F4436F /* PROCViewController.m in Sources */,
+				BF40581019C8560700986769 /* SplitImage.m in Sources */,
 				BFC82FA219B9EFFB00F4436F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +374,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.paulhome.proxychat";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -391,6 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProximityChat/ProximityChat-Prefix.pch";
 				INFOPLIST_FILE = "ProximityChat/ProximityChat-Info.plist";
@@ -471,6 +517,7 @@
 				BFC82FC919B9EFFB00F4436F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFC82FCA19B9EFFB00F4436F /* Build configuration list for PBXNativeTarget "ProximityChatTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +526,7 @@
 				BFC82FCC19B9EFFB00F4436F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
